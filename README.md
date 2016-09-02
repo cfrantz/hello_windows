@@ -51,3 +51,7 @@ Pick a location and untar the files.  Mine are in `${HOME}/mxe`.
 1. A bunch of stuff gets printed out during linking.  It shouldn't do that.
 
 1. Lots of cleanup needed in the CROSSTOOL file.
+
+1. Add additional libraries from MXE.
+
+1. Make sure other fancy libraries (like google-protobuf or gflags) work.
