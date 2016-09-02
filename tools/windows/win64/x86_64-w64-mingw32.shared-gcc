@@ -1,0 +1,6 @@
+#!/bin/bash --norc
+
+PATH="external/mingw_compiler_win64/usr/libexec/gcc/x86_64-w64-mingw32.shared/4.9.3:external/mingw_compiler_win64/usr/bin:$PATH"
+exec -a x86_64-w64-mingw32.shared-gcc \
+    external/mingw_compiler_win64/usr/bin/x86_64-w64-mingw32.shared-gcc \
+    "$@"
