@@ -22,27 +22,27 @@ Pick a location and untar the files.  Mine are in `${HOME}/mxe`.
 
 1. Target 64-bit windows:
 
-```
-bazel build --crosstool_top=//tools/windows:toolchain --cpu=win64 :hello
-```
+   ```
+   bazel build --crosstool_top=//tools/windows:toolchain --cpu=win64 :hello
+   ```
 
 1. Target 32-bit windows:
 
-```
-bazel build --crosstool_top=//tools/windows:toolchain --cpu=win64 :hello
-```
+   ```
+   bazel build --crosstool_top=//tools/windows:toolchain --cpu=win64 :hello
+   ```
 
 1. Download only the 32-bit compiler and target 32-bit windows:
 
-```
-bazel build --crosstool_top=//tools/windows:toolchain32 --cpu=win32 :hello
-```
+   ```
+   bazel build --crosstool_top=//tools/windows:toolchain32 --cpu=win32 :hello
+   ```
 
 1. Download only the 64-bit compiler and target 64-bit windows:
 
-```
-bazel build --crosstool_top=//tools/windows:toolchain64 --cpu=win64 :hello
-```
+   ```
+   bazel build --crosstool_top=//tools/windows:toolchain64 --cpu=win64 :hello
+   ```
 
 ## TODO
 
