@@ -24,7 +24,7 @@ You only care about 64-bit windows:
 tools/downloader.py --nowin32 compiler SDL2
 ```
 
-You install mxe in `home/user/mxe` and just and to symlink it to your project:
+You installed mxe in `home/user/mxe` and want to symlink it to your project:
 
 ```
 tools/downloader.py --altdest /home/user/mxe compiler sqlite readline
