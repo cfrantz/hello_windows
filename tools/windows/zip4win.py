@@ -39,9 +39,14 @@ SKIP_DLLS = [
     'KERNEL32.dll',
 ]
 
-REQUIRED_DLLS = [
-    'libgcc_s_seh-1.dll',
-]
+REQUIRED_DLLS = {
+    'win32': [
+        'libgcc_s_sjlj-1.dll',
+    ],
+    'win64': [
+        'libgcc_s_seh-1.dll',
+    ],
+}
 
 def guess_exe(filename):
     with file(filename, 'r') as f:
@@ -65,7 +70,7 @@ def guess_dlls(args, f):
             dll = os.path.join(args.mxe, 'usr', PREFIX[peformat], 'bin', dll)
             dlls.append(dll)
 
-    for dll in REQUIRED_DLLS:
+    for dll in REQUIRED_DLLS[args.target]:
         dll = os.path.join(args.mxe, 'usr', PREFIX[peformat], 'bin', dll)
         dlls.append(dll)
 
