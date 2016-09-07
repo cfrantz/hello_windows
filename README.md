@@ -9,14 +9,26 @@ This is somewhat based off of the Bazel Wiki's
 ## Get the compiler toolchain
 
 ```
-wget http://pkg.mxe.cc/repos/tar/mxe-x86-64-w64-mingw32.shared/mxe-i686-w64-mingw32.shared-gcc_4.9.3.tar.xz
-wget http://pkg.mxe.cc/repos/tar/mxe-x86-64-w64-mingw32.shared/mxe-i686-w64-mingw32.shared-binutils_2.25.1.tar.xz
-wget http://pkg.mxe.cc/repos/tar/mxe-x86-64-w64-mingw32.shared/mxe-x86-64-w64-mingw32.shared-gcc_4.9.3.tar.xz
-wget http://pkg.mxe.cc/repos/tar/mxe-x86-64-w64-mingw32.shared/mxe-x86-64-w64-mingw32.shared-binutils_2.25.1.tar.xz
+tools/downloader.py compiler
 ```
 
-Pick a location and untar the files.  Mine are in `${HOME}/mxe`.
+Check what other libraries you can get:
 
+```
+tools/downloader.py --list
+```
+
+You only care about 64-bit windows:
+
+```
+tools/downloader.py --nowin32 compiler SDL2
+```
+
+You install mxe in `home/user/mxe` and just and to symlink it to your project:
+
+```
+tools/downloader.py --altdest /home/user/mxe compiler sqlite readline
+```
 
 ## Build the program
 
@@ -32,26 +44,8 @@ Pick a location and untar the files.  Mine are in `${HOME}/mxe`.
    bazel build --crosstool_top=//tools/windows:toolchain --cpu=win64 :hello
    ```
 
-1. Download only the 32-bit compiler and target 32-bit windows:
-
-   ```
-   bazel build --crosstool_top=//tools/windows:toolchain32 --cpu=win32 :hello
-   ```
-
-1. Download only the 64-bit compiler and target 64-bit windows:
-
-   ```
-   bazel build --crosstool_top=//tools/windows:toolchain64 --cpu=win64 :hello
-   ```
-
 ## TODO
 
 1. The resulting binary gets named `hello` instead of `hello.exe`.
-
-1. A bunch of stuff gets printed out during linking.  It shouldn't do that.
-
-1. Lots of cleanup needed in the CROSSTOOL file.
-
-1. Add additional libraries from MXE.
 
 1. Make sure other fancy libraries (like google-protobuf or gflags) work.

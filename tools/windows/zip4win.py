@@ -99,7 +99,6 @@ def pack_zip(args):
 
 
 if __name__ == '__main__':
-    print "ARGV:", sys.argv
     args = flags.parse_args(sys.argv[1:])
     if args.objdump_bin == None:
         args.objdump_bin = os.path.join(args.mxe, 'usr', 'bin',
