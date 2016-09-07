@@ -41,7 +41,7 @@ tools/downloader.py --altdest /home/user/mxe compiler sqlite readline
 1. Target 32-bit windows:
 
    ```
-   bazel build --crosstool_top=//tools/windows:toolchain --cpu=win64 :hello
+   bazel build --crosstool_top=//tools/windows:toolchain --cpu=win32 :hello
    ```
 
 ## TODO
