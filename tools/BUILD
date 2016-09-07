@@ -2,7 +2,7 @@ package(default_visibility = ["//visibility:public"])
 
 filegroup(
     name = "srcs",
-    srcs = glob(["**"]) + [
+    srcs = glob(["**"], exclude=["mxe/**"]) + [
         "//tools/windows:srcs",
     ],
 )

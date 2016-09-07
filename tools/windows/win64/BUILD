@@ -1,4 +1,4 @@
-package(default_visibility = ['//tools/windows:__pkg__'])
+package(default_visibility = ["//visibility:public"])
 
 filegroup(
   name = 'addr2line',

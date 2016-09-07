@@ -52,23 +52,18 @@ toolchain {
   tool_path { name: "objdump" path: "win32/i686-w64-mingw32.shared-objdump" }
   tool_path { name: "strip" path: "win32/i686-w64-mingw32.shared-strip" }
 
-#  compiler_flag: "-target"
-#  compiler_flag: "armv7a-arm-linux-gnueabif"
   compiler_flag: "--sysroot=external/mingw_compiler_win32/usr/i686-w64-mingw32.shared/lib"
-#  compiler_flag: "-mfloat-abi=hard"
   compiler_flag: "-Bexternal/mingw_compiler_win32/usr/bin/i686-w64-mingw32.shared-"
 
-  compiler_flag: "-v"
   compiler_flag: "-nostdinc"
-# TODO(cfrantz): WTF?
-#  compiler_flag: "-isystem"
-#  compiler_flag: "/usr/lib/clang/3.6/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win32/usr/i686-w64-mingw32.shared/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed"
+  compiler_flag: "-D_USE_MATH_DEFINES"
+  cxx_flag: "-std=c++11"
   cxx_flag: "-isystem"
   cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include"
   cxx_flag: "-isystem"
@@ -77,31 +72,19 @@ toolchain {
   cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed"
   cxx_flag: "-isystem"
   cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include/c++"
+  cxx_flag: "-isystem"
+  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include/c++/i686-w64-mingw32.shared"
 
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/libc/usr/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/libc/usr/lib/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/libc/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/include)%/c++/4.9.3"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/libc/lib/gcc/i686-w64-mingw32.shared/4.9.3/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/libc/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/include)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/4.9.3/include)%"
   cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/include)%/c++/4.9.3"
-#  cxx_builtin_include_directory: '/usr/lib/clang/3.6/include'
 
-#  linker_flag: "-target"
-#  linker_flag: "armv7a-arm-linux-gnueabif"
-#  linker_flag: "--sysroot=external/mingw_compiler_win32/usr/i686-w64-mingw32.shared/lib"
+  linker_flag: "-lmingw32"
   linker_flag: "-lstdc++"
+  linker_flag: "-lssp"
   linker_flag: "-Lexternal/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3"
   linker_flag: "-Lexternal/mingw_compiler_win32/usr/i686-w64-mingw32.shared/lib"
 
-#  linker_flag: "-Ltools/arm_compiler/mingw/clang_more_libs"
-#  linker_flag: "-Lexternal/mingw_compiler_win32/usr/i686-w64-mingw32.shared/libc/lib"
-#  linker_flag: "-Lexternal/mingw_compiler_win32/usr/i686-w64-mingw32.shared/libc/usr/lib"
-#  linker_flag: "-Bexternal/mingw_compiler_win32/usr/i686-w64-mingw32.shared/bin"
-#  linker_flag: "-Wl,--dynamic-linker=/lib/ld-linux-armhf.so.3"
   linker_flag: "-Bexternal/mingw_compiler_win32/usr/bin/i686-w64-mingw32.shared-"
   linker_flag: "-Bexternal/mingw_compiler_win32/usr/i686-w64-mingw32.shared/lib"
 
@@ -123,9 +106,6 @@ toolchain {
   # it enabled by default.
   compiler_flag: "-U_FORTIFY_SOURCE"
   compiler_flag: "-fstack-protector"
-#  compiler_flag: "-fPIE"
-#  linker_flag: "-pie"
-#  linker_flag: "-Wl,-z,relro,-z,now"
 
   # Enable coloring even if there's no attached terminal. Bazel removes the
   # escape sequences if --nocolor is specified.
@@ -143,9 +123,7 @@ toolchain {
 
   # Stamp the binary with a unique identifier.
   linker_flag: "-Wl,--build-id=md5"
-#  linker_flag: "-Wl,--hash-style=gnu"
   linker_flag: "-fno-use-linker-plugin"
-#  linker_flag: "-print-search-dirs"
 
   compilation_mode_flags {
     mode: DBG
@@ -211,23 +189,18 @@ toolchain {
   tool_path { name: "objdump" path: "win64/x86_64-w64-mingw32.shared-objdump" }
   tool_path { name: "strip" path: "win64/x86_64-w64-mingw32.shared-strip" }
 
-#  compiler_flag: "-target"
-#  compiler_flag: "armv7a-arm-linux-gnueabif"
   compiler_flag: "--sysroot=external/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/lib"
-#  compiler_flag: "-mfloat-abi=hard"
   compiler_flag: "-Bexternal/mingw_compiler_win64/usr/bin/x86_64-w64-mingw32.shared-"
 
-  compiler_flag: "-v"
   compiler_flag: "-nostdinc"
-# TODO(cfrantz): WTF?
-#  compiler_flag: "-isystem"
-#  compiler_flag: "/usr/lib/clang/3.6/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed"
+  compiler_flag: "-D_USE_MATH_DEFINES"
+  cxx_flag: "-std=c++11"
   cxx_flag: "-isystem"
   cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include"
   cxx_flag: "-isystem"
@@ -236,31 +209,19 @@ toolchain {
   cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed"
   cxx_flag: "-isystem"
   cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include/c++"
+  cxx_flag: "-isystem"
+  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include/c++/x86_64-w64-mingw32.shared"
 
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/libc/usr/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/libc/usr/lib/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/libc/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/include)%/c++/4.9.3"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/libc/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/libc/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/include)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/4.9.3/include)%"
   cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/include)%/c++/4.9.3"
-#  cxx_builtin_include_directory: '/usr/lib/clang/3.6/include'
 
-#  linker_flag: "-target"
-#  linker_flag: "armv7a-arm-linux-gnueabif"
-#  linker_flag: "--sysroot=external/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/lib"
+  linker_flag: "-lmingw32"
   linker_flag: "-lstdc++"
+  linker_flag: "-lssp"
   linker_flag: "-Lexternal/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3"
   linker_flag: "-Lexternal/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/lib"
 
-#  linker_flag: "-Ltools/arm_compiler/mingw/clang_more_libs"
-#  linker_flag: "-Lexternal/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/libc/lib"
-#  linker_flag: "-Lexternal/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/libc/usr/lib"
-#  linker_flag: "-Bexternal/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/bin"
-#  linker_flag: "-Wl,--dynamic-linker=/lib/ld-linux-armhf.so.3"
   linker_flag: "-Bexternal/mingw_compiler_win64/usr/bin/x86_64-w64-mingw32.shared-"
   linker_flag: "-Bexternal/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/lib"
 
@@ -282,9 +243,6 @@ toolchain {
   # it enabled by default.
   compiler_flag: "-U_FORTIFY_SOURCE"
   compiler_flag: "-fstack-protector"
-#  compiler_flag: "-fPIE"
-#  linker_flag: "-pie"
-#  linker_flag: "-Wl,-z,relro,-z,now"
 
   # Enable coloring even if there's no attached terminal. Bazel removes the
   # escape sequences if --nocolor is specified.
@@ -302,9 +260,7 @@ toolchain {
 
   # Stamp the binary with a unique identifier.
   linker_flag: "-Wl,--build-id=md5"
-#  linker_flag: "-Wl,--hash-style=gnu"
   linker_flag: "-fno-use-linker-plugin"
-#  linker_flag: "-print-search-dirs"
 
   compilation_mode_flags {
     mode: DBG

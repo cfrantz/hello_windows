@@ -12,6 +12,11 @@
 package(default_visibility = ["//visibility:public"])
 
 filegroup(
+  name = 'empty',
+  srcs = [],
+)
+
+filegroup(
   name = 'toolchain',
   srcs = [
     ':toolchain32',
@@ -136,4 +141,19 @@ cc_toolchain(
 filegroup(
     name = "srcs",
     srcs = glob(["**"]),
+)
+
+config_setting(
+    name = "win32_mode",
+    values = { "cpu": "win32" }
+)
+
+config_setting(
+    name = "win64_mode",
+    values = { "cpu": "win64" }
+)
+
+py_binary(
+    name = "zip4win",
+    srcs = ["zip4win.py"],
 )
