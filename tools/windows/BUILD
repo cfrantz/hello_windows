@@ -16,21 +16,13 @@ filegroup(
   srcs = [],
 )
 
-filegroup(
-  name = 'toolchain',
-  srcs = [
-    ':toolchain32',
-    ':toolchain64',
-  ],
-)
-
-filegroup(
-  name = 'toolchain32',
-  srcs = [
-    ':cc-compiler-win32',
-    '@mingw_compiler_win32//:compiler_components',
-    ':mingw_all_files_win32',
-  ],
+cc_toolchain_suite(
+    name = 'toolchain',
+    toolchains = {
+        'win32|compiler': 'cc-compiler-win32',
+        'win64|compiler': 'cc-compiler-win64',
+        'local|compiler': 'cc-compiler-local',
+    },
 )
 
 filegroup(
@@ -57,6 +49,7 @@ filegroup(
     '//tools/windows/win32:gcc',
     '//tools/windows/win32:ld',
     '//tools/windows/win32:as',
+    '@mingw_compiler_win32//:compiler_pieces',
   ],
 )
 
@@ -72,15 +65,6 @@ cc_toolchain(
   static_runtime_libs = [':empty'],
   strip_files = '//tools/windows/win32:strip',
   supports_param_files = 1,
-)
-
-filegroup(
-  name = 'toolchain64',
-  srcs = [
-    ':cc-compiler-win64',
-    '@mingw_compiler_win64//:compiler_components',
-    ':mingw_all_files_win64',
-  ],
 )
 
 filegroup(
@@ -107,6 +91,7 @@ filegroup(
     '//tools/windows/win64:gcc',
     '//tools/windows/win64:ld',
     '//tools/windows/win64:as',
+    '@mingw_compiler_win64//:compiler_pieces',
   ],
 )
 

@@ -18,10 +18,10 @@ default_toolchain {
 }
 
 toolchain {
-  abi_version: "gcc-4.9.3"
+  abi_version: "gcc-4.9.4"
   abi_libc_version: "glibc_2.19"
   builtin_sysroot: ""
-  compiler: "windows_mingw"
+  compiler: "compiler"
   host_system_name: "x86_64-linux"
   needsPic: false
   supports_gold_linker: false
@@ -57,32 +57,32 @@ toolchain {
 
   compiler_flag: "-nostdinc"
   compiler_flag: "-isystem"
-  compiler_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include"
+  compiler_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.4/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win32/usr/i686-w64-mingw32.shared/include"
   compiler_flag: "-isystem"
-  compiler_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed"
+  compiler_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.4/include-fixed"
   compiler_flag: "-D_USE_MATH_DEFINES"
   cxx_flag: "-std=c++11"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include"
+  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.4/include"
   cxx_flag: "-isystem"
   cxx_flag: "external/mingw_compiler_win32/usr/i686-w64-mingw32.shared/include"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed"
+  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.4/include-fixed"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include/c++"
+  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.4/include/c++"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include/c++/i686-w64-mingw32.shared"
+  cxx_flag: "external/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.4/include/c++/i686-w64-mingw32.shared"
 
   cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/4.9.3/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/lib/gcc/i686-w64-mingw32.shared/4.9.3/include-fixed)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/i686-w64-mingw32.shared/4.9.4/include)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win32//usr/lib/gcc/i686-w64-mingw32.shared/4.9.4/include-fixed)%"
 
   linker_flag: "-lmingw32"
   linker_flag: "-lstdc++"
   linker_flag: "-lssp"
-  linker_flag: "-Lexternal/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.3"
+  linker_flag: "-Lexternal/mingw_compiler_win32/usr/lib/gcc/i686-w64-mingw32.shared/4.9.4"
   linker_flag: "-Lexternal/mingw_compiler_win32/usr/i686-w64-mingw32.shared/lib"
 
   linker_flag: "-Bexternal/mingw_compiler_win32/usr/bin/i686-w64-mingw32.shared-"
@@ -155,10 +155,10 @@ toolchain {
 }
 
 toolchain {
-  abi_version: "gcc-4.9.3"
+  abi_version: "gcc-4.9.4"
   abi_libc_version: "glibc_2.19"
   builtin_sysroot: ""
-  compiler: "windows_mingw"
+  compiler: "compiler"
   host_system_name: "x86_64-linux"
   needsPic: false
   supports_gold_linker: false
@@ -194,32 +194,32 @@ toolchain {
 
   compiler_flag: "-nostdinc"
   compiler_flag: "-isystem"
-  compiler_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include"
+  compiler_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4/include"
   compiler_flag: "-isystem"
   compiler_flag: "external/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/include"
   compiler_flag: "-isystem"
-  compiler_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed"
+  compiler_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4/include-fixed"
   compiler_flag: "-D_USE_MATH_DEFINES"
   cxx_flag: "-std=c++11"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include"
+  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4/include"
   cxx_flag: "-isystem"
   cxx_flag: "external/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/include"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed"
+  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4/include-fixed"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include/c++"
+  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4/include/c++"
   cxx_flag: "-isystem"
-  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include/c++/x86_64-w64-mingw32.shared"
+  cxx_flag: "external/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4/include/c++/x86_64-w64-mingw32.shared"
 
   cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/4.9.3/include)%"
-  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3/include-fixed)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/x86_64-w64-mingw32.shared/4.9.4/include)%"
+  cxx_builtin_include_directory: "%package(@mingw_compiler_win64//usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4/include-fixed)%"
 
   linker_flag: "-lmingw32"
   linker_flag: "-lstdc++"
   linker_flag: "-lssp"
-  linker_flag: "-Lexternal/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.3"
+  linker_flag: "-Lexternal/mingw_compiler_win64/usr/lib/gcc/x86_64-w64-mingw32.shared/4.9.4"
   linker_flag: "-Lexternal/mingw_compiler_win64/usr/x86_64-w64-mingw32.shared/lib"
 
   linker_flag: "-Bexternal/mingw_compiler_win64/usr/bin/x86_64-w64-mingw32.shared-"
