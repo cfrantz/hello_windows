@@ -6,46 +6,27 @@ linux.
 This is somewhat based off of the Bazel Wiki's
 [Building with a custom toolchain](https://github.com/bazelbuild/bazel/wiki/Building-with-a-custom-toolchain).
 
-## Get the compiler toolchain
+## Documentation
+
+See the [mxebzl](https://github.com/cfrantz/mxebzl) project for more detailed
+documentation about the `WORKSPACE` configuration.
+
+Note the targets in the `BUILD` file.
+
+Build the binary:
 
 ```
-tools/downloader.py compiler
+$ bazel build \
+    --crosstool_top=@mxebzl//tools/windows:toolchain \
+    --cpu=win32 \
+    :hello
 ```
 
-Check what other libraries you can get:
+Build a distributable package:
 
 ```
-tools/downloader.py --list
+$ bazel build \
+    --crosstool_top=@mxebzl//tools/windows:toolchain \
+    --cpu=win32 \
+    :hello-windows
 ```
-
-You only care about 64-bit windows:
-
-```
-tools/downloader.py --nowin32 compiler SDL2
-```
-
-You installed mxe in `home/user/mxe` and want to symlink it to your project:
-
-```
-tools/downloader.py --altdest /home/user/mxe compiler sqlite readline
-```
-
-## Build the program
-
-1. Target 64-bit windows:
-
-   ```
-   bazel build --crosstool_top=//tools/windows:toolchain --cpu=win64 :hello
-   ```
-
-1. Target 32-bit windows:
-
-   ```
-   bazel build --crosstool_top=//tools/windows:toolchain --cpu=win32 :hello
-   ```
-
-## TODO
-
-1. The resulting binary gets named `hello` instead of `hello.exe`.
-
-1. Make sure other fancy libraries (like google-protobuf or gflags) work.

@@ -1,11 +1,12 @@
-new_local_repository(
-    name = "mingw_compiler_win32",
-    path = "tools/mxe",
-    build_file = "mingw_compiler_win32.BUILD",
+git_repository(
+    name = "mxebzl",
+    remote = "https://github.com/cfrantz/mxebzl.git",
+    tag = "20170701_RC01",
 )
 
-new_local_repository(
-    name = "mingw_compiler_win64",
-    path = "tools/mxe",
-    build_file = "mingw_compiler_win64.BUILD",
+load("@mxebzl//tools:repository.bzl", "mxe_compilers")
+mxe_compilers(
+    deps = [
+        "compiler",
+    ],
 )
