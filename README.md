@@ -17,8 +17,7 @@ Build the binary:
 
 ```
 $ bazel build \
-    --crosstool_top=@mxebzl//tools/windows:toolchain \
-    --cpu=win32 \
+    --config win64 \
     :hello
 ```
 
@@ -26,7 +25,6 @@ Build a distributable package:
 
 ```
 $ bazel build \
-    --crosstool_top=@mxebzl//tools/windows:toolchain \
-    --cpu=win32 \
+    --config win64 \
     :hello-windows
 ```
